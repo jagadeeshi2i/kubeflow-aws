@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"ml-pipeline","app.kubernetes.io/name":"kubeflow-pipelines"},"name":"ml-pipeline-ui","namespace":"kubeflow"},"spec":{"gateways":["kubeflow-gateway"],"hosts":["*"],"http":[{"match":[{"uri":{"prefix":"/pipeline"}}],"rewrite":{"uri":"/pipeline"},"route":[{"destination":{"host":"ml-pipeline-ui.kubeflow.svc.cluster.local","port":{"number":80}}}],"timeout":"300s"}]}}
+  creationTimestamp: "2021-04-02T07:18:14Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: ml-pipeline
+    app.kubernetes.io/name: kubeflow-pipelines
+  name: ml-pipeline-ui
+  namespace: kubeflow
+  resourceVersion: "21277708"
+  selfLink: /apis/networking.istio.io/v1alpha3/namespaces/kubeflow/virtualservices/ml-pipeline-ui
+  uid: 38dc4137-ace1-44a8-8acf-927a761cf935
+spec:
+  gateways:
+  - kubeflow-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /pipeline
+    rewrite:
+      uri: /pipeline
+    route:
+    - destination:
+        host: ml-pipeline-ui.kubeflow.svc.cluster.local
+        port:
+          number: 80
+    timeout: 300s
